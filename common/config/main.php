@@ -5,5 +5,9 @@ return [
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
+        'Saludo' => [
+            'class' => 'common\components\MyComponent',
+            'message' => "José López Chávez"
+        ],
     ],
 ];
