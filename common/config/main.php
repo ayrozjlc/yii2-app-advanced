@@ -7,7 +7,7 @@ return [
         ],
         'Saludo' => [
             'class' => 'common\components\MyComponent',
-            'message' => "José López Chávez"
+            'message' => "Hola José López Chávez"
         ],
     ],
 ];

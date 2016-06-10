@@ -9,11 +9,27 @@ use yii\bootstrap\ActiveForm;
 
 $this->title = 'Login';
 $this->params['breadcrumbs'][] = $this->title;
+
+//Se invoca el componente dado de alta
+$component = Yii::$app->Saludo;
+
+// Se declara un evento after para el componente Saludo
+$component->on($component::EVENT_AFTER, function ($event) {
+    echo "<br>" . $event->data;
+}, '###evento disparado despues...');
+
+if (!Yii::$app->user->isGuest) {
+    return $this->goHome();
+}
 ?>
 <div class="site-login">
-    <h1><?= Html::encode($this->title) ?></h1>
-    <h1><?= Yii::$app->Saludo->Hola() ?></h1>
-
+    <?php //Evento before ?>
+    <h1><?= $component->trigger($component::EVENT_BEFORE); ?><br>
+    <?php echo $component->Hola(); ?>
+    <?php //Se dispara event_after de la clase componente
+        $component->trigger($component::EVENT_AFTER);
+    ?>
+    </h1>
     <p>Please fill out the following fields to login:</p>
 
     <div class="row">
